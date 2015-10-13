@@ -1,0 +1,21 @@
+{
+    "name": "def/validation",
+    "type": "library",
+    "homepage": "https://github.com/andrew-kamenchuk/def-validation",
+    "description": "simple for use validation library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "andrew-kamenchuk",
+            "email": "andrew.kamenchuk@gmail.com"
+        }
+    ],
+    "require": {
+			"php": ">=5.6"
+    },
+    "autoload": {
+			"psr-4": {
+				"def\\Validation\\": ""
+			}
+    }
+}
