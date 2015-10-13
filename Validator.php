@@ -33,7 +33,7 @@ class Validator
 			throw new \BadMethodCallException("Undefined '$method' validation rule");
 
 		$this->assertions[] = function($value) use($assertion, $args, $not) {
-			return $assertion($value, ...$args) ? !$not : $not;
+			return \filter_var($assertion($value, ...$args), \FILTER_VALIDATE_BOOLEAN) ? !$not : $not;
 		};
 
 		return $this;
@@ -42,7 +42,9 @@ class Validator
 	public function assert(callable $assertion)
 	{
 		$validator = isset($this) ? $this : new static;
-		$validator->assertions[] = $assertion;
+		$validator->assertions[] = function($value) use($assertion) {
+			return \filter_var($assertion($value), \FILTER_VALIDATE_BOOLEAN);
+		};
 
 		return $validator;
 	}
