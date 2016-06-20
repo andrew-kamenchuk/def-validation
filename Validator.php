@@ -28,6 +28,8 @@ class Validator
     {
         $exists = \function_exists($assertion = __NAMESPACE__ . "\\$method") || \function_exists($assertion = $method);
 
+        $neg = false;
+
         if (!$exists && 0 === \strpos($method, 'not_')) {
             $_method = substr($method, 4);
 
